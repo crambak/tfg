@@ -1,0 +1,130 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="content">
+	  <h:form align="left" >	
+	  	<f:metadata>
+		   <f:viewParam name="idMatch" value="#{showmatch.idMatch}" required="true" />
+		</f:metadata>	
+		<p/>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="card">
+				  <div class="card-header">
+				    <h5 class="card-title"> #{showmatch.mtHome.name}</h5>
+				  </div>
+				  <div class="card-body">
+				    <p class="card-text"><strong>Balanç:</strong> #{showmatch.mtHome.balance}</p>	
+				    <p class="card-text"><strong>Posició:</strong> #{showmatch.mtHome.position}</p>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="card">
+				  <div class="card-header">
+				    <h5 class="card-title"> #{showmatch.mtAway.name}</h5>
+				  </div>
+				  <div class="card-body">
+				    <p class="card-text"><strong>Balanç:</strong> #{showmatch.mtAway.balance}</p>	
+				    <p class="card-text"><strong>Posició:</strong> #{showmatch.mtAway.position}</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<p/>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+				  <div class="card-body">
+				    <p class="card-text"><strong>Data:</strong> #{showmatch.date}</p>	
+				    <p class="card-text"><strong>Pavelló:</strong> #{showmatch.location}</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<p/>
+	 	 <div class="row">
+			<div class="col-sm-6">
+	  		<h:outputText value="Punts" style="white-space: pre;font-size:35px;"/>
+			<h:dataTable class="table table-bordered" value="#{showmatch.points()}" var="pts" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip"/>
+	  				</f:facet> 
+	  				<div >
+	  				<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{pts.idTeam}" class="bg-white">#{pts.team}</a>
+	    			</div>
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="1Q"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{pts.first}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="2Q"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{pts.second}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="3Q"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{pts.third}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="4Q"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{pts.fourth}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Total"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{pts.total}" />
+				</h:column>	
+			</h:dataTable>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-sm-6">
+	  		<h:outputText value="Rebots" style="white-space: pre;font-size:35px;"/>
+			<h:dataTable class="table table-bordered" value="#{showmatch.rebounds()}" var="reb" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip"/>
+	  				</f:facet> 
+	  				<div >
+	    			<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{reb.idTeam}" class="bg-white">#{reb.team}</a>
+	    			</div>
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="D"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{reb.defensive}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="O"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{reb.offensive}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Total"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{reb.total}" />
+				</h:column>	
+			</h:dataTable>
+			</div>
+		</div>
+		  </h:form>  		
+	</ui:define>
+</ui:composition>

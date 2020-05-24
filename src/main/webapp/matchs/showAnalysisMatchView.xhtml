@@ -1,0 +1,347 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="content">
+	  <h:form align="left" >	
+	  	<f:metadata>
+		   <f:viewParam name="idMatch" value="#{analysis.idMatch}" required="true" />
+		</f:metadata>	
+		<f:metadata>
+		   <f:viewParam name="idStatistics" value="#{analysis.idStatistics}" required="true" />
+		</f:metadata>	
+		<p/>
+		<div class="row">
+			<div class="col-md-4">
+				<div class="card">
+				  <div class="card-header">
+				    <h5 class="card-title"> #{analysis.mtHome.name}</h5>
+				  </div>
+				  <div class="card-body">
+				    <p class="card-text"><strong>Balanç:</strong> #{analysis.mtHome.balance}</p>	
+				    <p class="card-text"><strong>Posició:</strong> #{analysis.mtHome.position}</p>
+				  </div>
+				</div>
+			</div>
+			<div class="col-md-4">
+				<div class="card">
+				  <div class="card-header">
+				    <h5 class="card-title"> #{analysis.mtAway.name}</h5>
+				  </div>
+				  <div class="card-body">
+				    <p class="card-text"><strong>Balanç:</strong> #{analysis.mtAway.balance}</p>	
+				    <p class="card-text"><strong>Posició:</strong> #{analysis.mtAway.position}</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<p/>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="card">
+				  <div class="card-body">
+				    <p class="card-text"><strong>Data:</strong> #{analysis.date}</p>	
+				    <p class="card-text"><strong>Pavelló:</strong> #{analysis.location}</p>
+				  </div>
+				</div>
+			</div>
+		</div>
+		<p/>
+		<h:outputText value="Tipus de dades:" style="white-space: pre;font-size:35px;"/>
+		<p/>
+			<div class="btn-group" style="#{analysis.disablePts}">
+ 				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.idPts}" class="btn text-white bg-primary">Punts</a>
+ 			</div>
+ 			<div class="btn-group" style="#{analysis.disable1Q}">
+				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.id1Q}" class="btn text-white bg-primary">Punts primer quart</a>
+ 			</div>
+ 			<div class="btn-group" style="#{analysis.disable2Q}">
+				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.id2Q}" class="btn text-white bg-primary">Punts segon quart</a>
+ 			</div>
+ 			<div class="btn-group" style="#{analysis.disable3Q}">
+				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.id3Q}" class="btn text-white bg-primary">Punts tercer quart</a>
+ 			</div>
+ 			<div class="btn-group" style="#{analysis.disable4Q}">
+				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.id4Q}" class="btn text-white bg-primary">Punts quart quart</a>
+ 			</div>
+ 			<div class="btn-group" style="#{analysis.disableReb}">
+				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.idReb}" class="btn text-white bg-primary">Rebots</a>
+ 			</div>
+ 			<div class="btn-group" style="#{analysis.disableOrb}">
+				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.idOrb}" class="btn text-white bg-primary">Rebots ofensius</a>
+ 			</div>
+ 			<div class="btn-group" style="#{analysis.disableDrb}">
+				<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{analysis.idMatch}&amp;idStats=#{analysis.idDrb}" class="btn text-white bg-primary">Rebots defensius</a>
+			</div>
+		<p/>
+		<div style="#{analysis.disabled}">
+			<h:outputText value="#{analysis.statistic}" style="white-space: pre;font-size:40px; font-style:italic"/>
+			<h:dataTable class="table table-bordered" value="#{analysis.getStats()}" var="item" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.name}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Tots"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.all}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Casa/Fora"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.home}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Últims 10 partits"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.last10}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Últims 5 partits"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.last5}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Últim partit"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.last}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Últims 30 dies"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.last30}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Últims 15 dies"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.last15}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Últims 7 dies"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.last7}" />
+				</h:column>	
+			</h:dataTable>
+		
+			<div class="" style="#{analysis.disabledListRating}">
+				<div class="col-md-4">
+				<table class="table table-borderless">
+					  <thead>
+					    <tr>
+					      <th scope="col">Classificacions:</th>
+					      <th scope="col" ></th>
+					     </tr>
+					  </thead>
+					  <tbody>
+					     <tr>
+					     	<td>
+						  	<h:selectOneMenu id="rating" class="form-control" value="#{analysis.rating}">
+						    	<f:selectItems value="#{analysis.lstRating}" />
+						    </h:selectOneMenu>
+						    </td>
+						 <td>
+						    <h:commandButton class="btn btn-success" value="Mostrar classificació" action="showAnalysisMatchView.xhtml">
+								<f:param name="idMatch" value="#{analysis.idMatch}" />
+								<f:param name="idStats" value="#{analysis.idStatistics}" />
+							</h:commandButton>
+							</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+				
+				<p/>
+				<div style="#{analysis.disabledRating}">
+				<div>
+					Es mostren els resultats dels equips contra equips en el mateix rang que el seu rival
+				</div>
+				<p/>
+					<h:dataTable class="table table-bordered" value="#{analysis.getStatsRating()}" var="item" first="0" frame="hsides" rules="all"  >
+						<h:column>
+			  				<f:facet name="header">
+			  					<h:outputText value="Equip"/>
+			  				</f:facet> 
+			    			<h:outputText value="#{item.name}" />
+						</h:column>
+						<h:column>
+			  				<f:facet name="header">
+			  					<h:outputText value="Rang"/>
+			  				</f:facet> 
+			    			<h:outputText value="#{item.rank}" />
+						</h:column>
+						<h:column>
+			  				<f:facet name="header">
+			  					<h:outputText value="Mitjana"/>
+			  				</f:facet> 
+			    			<h:outputText value="#{item.avg}" />
+						</h:column>
+						<h:column>
+			  				<f:facet name="header">
+			  					<h:outputText value="Mínim"/>
+			  				</f:facet> 
+			    			<h:outputText value="#{item.min}" />
+						</h:column>
+						<h:column>
+			  				<f:facet name="header">
+			  					<h:outputText value="Màxim"/>
+			  				</f:facet> 
+			    			<h:outputText value="#{item.max}" />
+						</h:column>
+						<h:column>
+			  				<f:facet name="header">
+			  					<h:outputText value="Últim"/>
+			  				</f:facet> 
+			    			<h:outputText value="#{item.last}" />
+						</h:column>
+					</h:dataTable>
+					
+					<p/>
+					<div class="row">
+						<div class="col-md-5">
+							<h:dataTable class="table table-bordered" value="#{analysis.getStatsRatingMatchHome()}" var="item" first="0" frame="hsides" rules="all"  >
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="#{analysis.mtHome.abbreviation}"/>
+					  				</f:facet> 
+					    			<h:outputText value="#{item.location}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="Data"/>
+					  				</f:facet> 
+					    			<h:outputText value="#{item.date}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="Rival"/>
+					  				</f:facet> 
+					    			<h:outputText value="#{item.opp}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="A Favor"/>
+					  				</f:facet> 
+					    			<h:outputText style="#{item.colourTeam}" value="#{item.teamStat}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="En contra"/>
+					  				</f:facet> 
+					    			<h:outputText style="#{item.colourOpp}" value="#{item.oppStat}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="Dades totals"/>
+					  				</f:facet> 
+					    			<h:outputText style="#{item.colourSum}" value="#{item.sumStat}" />
+								</h:column>
+							</h:dataTable>
+							
+						</div>
+						<div class="col-md-5">
+							<h:dataTable class="table table-bordered" value="#{analysis.getStatsRatingMatchAway()}" var="item" first="0" frame="hsides" rules="all"  >
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="#{analysis.mtAway.abbreviation}"/>
+					  				</f:facet> 
+					    			<h:outputText value="#{item.location}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="Data"/>
+					  				</f:facet> 
+					    			<h:outputText value="#{item.date}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="Rival"/>
+					  				</f:facet> 
+					    			<h:outputText value="#{item.opp}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="A Favor"/>
+					  				</f:facet> 
+					    			<h:outputText style="#{item.colourTeam}" value="#{item.teamStat}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="En contra"/>
+					  				</f:facet> 
+					    			<h:outputText style="#{item.colourOpp}" value="#{item.oppStat}" />
+								</h:column>
+								<h:column>
+					  				<f:facet name="header">
+					  					<h:outputText value="Totals"/>
+					  				</f:facet> 
+					    			<h:outputText style="#{item.colourSum}" value="#{item.sumStat}" />
+								</h:column>
+						</h:dataTable>
+						</div>
+					</div>
+					<p/>
+					<table class="table table-borderless">
+					  <thead>
+					    <tr>
+					      <th scope="col" width="135px" >Stake Local</th>
+					      <th scope="col" width="135px" >Stake Visitant</th>
+					      <th scope="col" width="135px" >Stake Total</th>
+					      <th scope="col"></th>
+					    </tr>
+					  </thead>
+					  <tbody>
+					    <tr>
+					      <td> 
+					      	<h:inputText id="stakeHome" class="form-control" value="#{analysis.stakeHome}">
+					    		<f:validateLength minimum="1" maximum="10" />
+					    		<h:message for="stakeHome" errorClass="errorMessage" />
+					    	</h:inputText>
+					      </td>
+					      <td> 
+					      	<h:inputText id="stakeAway" class="form-control" value="#{analysis.stakeAway}">
+					    		<f:validateLength minimum="1" maximum="10" />
+					    		<h:message for="stakeAway" errorClass="errorMessage" />
+					    	</h:inputText>
+					      </td>
+					      <td>
+					      	<h:inputText id="stakeTotal" class="form-control" value="#{analysis.stakeTotal}">
+					    		<f:validateLength minimum="1" maximum="10" />
+					    		<h:message for="stakeTotal" errorClass="errorMessage" />
+					    	</h:inputText>
+					      </td>
+					      <td>
+					      	<h:commandButton class="btn btn-success" value="Calcular Stake" action="showAnalysisMatchView.xhtml">
+								<f:param name="idMatch" value="#{analysis.idMatch}" />
+								<f:param name="idStats" value="#{analysis.idStatistics}" />
+								<f:param name="isRating" value="#{analysis.idRating}" />
+							</h:commandButton>
+						  </td>
+					    </tr>
+					   </tbody>
+					</table>
+					</div>
+			</div>
+			
+			
+			
+		
+		</div>
+		
+		
+		
+		
+		  </h:form> 
+	</ui:define>
+</ui:composition>

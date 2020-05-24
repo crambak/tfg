@@ -1,0 +1,47 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="content">
+	  <h:form align="left" >	
+	  
+	  	<br />
+		<h:dataTable class="table table-bordered" value="#{statisticslist.statisticsList()}" var="item" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Tipus"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.type}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Descripció"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.description}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Estat"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.active}" />
+				</h:column>
+ 				<h:column>
+ 					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+<!-- 	 					<div  class="btn-group mr-2" role="group" aria-label="First group"> -->
+<!-- 	 						<h:commandButton class="btn btn-info" value="Veure" action="#{statisticslist.showStatistics(item.id)}"/> -->
+<!-- 	 					</div> -->
+	 					<div class="btn-group mr-2" role="group" aria-label="Second group">
+	 						<h:commandButton class="btn btn-success" value="Actualitzar" action="#{statisticslist.updateStatistics(item.id)}"/>
+	 					</div>
+	 					<div class="btn-group" role="group" aria-label="Third group">
+							<h:commandButton class="btn btn-danger" value="#{item.buttonAct}" action="#{statisticslist.activeStatistics(item.id, item.activeBol)}"/>
+						</div>
+					</div>
+				</h:column> 
+			</h:dataTable>
+<!-- 			<a class="btn btn-outline-danger" href="/tfg/matchs/homeView.xhtml">Tornar</a> -->
+		  </h:form>  		
+	</ui:define>
+</ui:composition>

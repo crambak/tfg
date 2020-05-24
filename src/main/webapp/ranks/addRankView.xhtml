@@ -1,0 +1,60 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+>
+	<ui:define name="content">
+	<f:metadata>
+	   <f:viewParam name="idRating" value="#{addrank.idRating}" required="true" />
+	</f:metadata>
+		<h:form>
+		<br />
+		  <div class="form-group">
+		    <label for="name">Nom</label>
+		    <h:inputText id="name" class="form-control" value="#{addrank.name}">
+		    	<f:validateLength minimum="1" maximum="20" />
+		    	<h:message for="name" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="description">Descripció</label>
+		    <h:inputText id="description" class="form-control" value="#{addrank.description}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="description" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="min">Mínim</label>
+		    <h:inputText id="min" class="form-control" value="#{addrank.min}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="min" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="max">Màxim</label>
+		    <h:inputText id="max" class="form-control" value="#{addrank.max}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="max" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <br />
+		  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+			<div  class="btn-group mr-2" role="group" aria-label="First group">
+		  		<h:commandButton class="btn btn-success" value="Crear rang" action="#{addrank.addRank(addrank.name, addrank.description, addrank.min, addrank.max, addrank.idRating)}"/>
+		  	</div>
+		  	<div  class="btn-group mr-2" role="group" aria-label="Second group">
+		  		<h:commandButton class="btn btn-outline-danger" value="Tornar" action="showAllRanksView.xhtml">
+					<f:param name="idRating" value="#{addrank.idRating}" />
+				</h:commandButton>
+		  	</div>
+		  </div>
+		</h:form>
+		<div class="row mt-2">
+		<p></p><p></p>
+			<div class="col-sm-12">
+				<h:messages styleClass="errorMessage" />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

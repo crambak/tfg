@@ -1,0 +1,122 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="content">
+	  <h:form align="left" >	
+	 	 
+			<div class="row">
+			<div class="col-sm-6">
+			<h:outputText value="Partits d'ahir" style="white-space: pre;font-size:35px;"/>
+			<h:dataTable class="table table-bordered" value="#{home.gamesYesterday()}" var="yesterday" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip local"/>
+	  				</f:facet> 
+	  				<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{yesterday.idHomeTeam}" class="bg-white">#{yesterday.homeTeamName}</a>
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip visitant"/>
+	  				</f:facet> 
+	  				<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{yesterday.idAwayTeam}" class="bg-white">#{yesterday.awayTeamName}</a>
+				</h:column>
+ 				<h:column>
+ 					<f:facet name="header">
+	  					<h:outputText value="Resultat"/>
+	  				</f:facet> 
+ 					<a href="/tfg/matchs/showMatchView.xhtml?idMatch=#{yesterday.id}" class="bg-white">#{yesterday.result}</a>
+				</h:column> 
+			</h:dataTable>
+			</div>
+			</div>
+			<div class="row">
+			<div class="col-sm-6">
+	  	<h:outputText value="Partit d'avui" style="white-space: pre;font-size:35px;"/>
+			<h:dataTable class="table table-bordered" value="#{home.gamesToday()}" var="today" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip local"/>
+	  				</f:facet> 
+	  				<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{today.idAwayTeam}" class="bg-white">#{today.awayTeamName}</a>
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip visitant"/>
+	  				</f:facet> 
+	  				<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{today.idHomeTeam}" class="bg-white">#{today.homeTeamName}</a>
+				</h:column>	
+ 				<h:column>
+ 					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+ 					<a href="/tfg/matchs/showAnalysisMatchView.xhtml?idMatch=#{today.id}" class="bg-white">Analitzar partit</a>
+					</div>
+				</h:column> 
+			</h:dataTable>
+			</div>
+			</div>
+			<h:outputText value="Standings" style="white-space: pre;font-size:35px;"/>
+			<div class="row">
+			<div class="col-sm-4">
+			<h:outputText value="East" style="white-space: pre;font-size:35px;"/>
+			<h:dataTable class="table table-bordered" value="#{home.eastStanding()}" var="east" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Posició"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{east.position}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip"/>
+	  				</f:facet> 
+	  				<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{east.idTeam}" class="bg-white">#{east.teamName}</a>
+				</h:column>	
+ 				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Victories"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{east.wins}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Derrotes"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{east.loses}" />
+				</h:column>	
+			</h:dataTable>
+			</div>
+			<div class="col-sm-4">
+			<h:outputText value="Oest" style="white-space: pre;font-size:35px;"/>
+			<h:dataTable class="table table-bordered" value="#{home.westStanding()}" var="west" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Posició"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{west.position}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Equip"/>
+	  				</f:facet> 
+	  				<a href="/tfg/matchs/showTeamView.xhtml?idTeam=#{west.idTeam}" class="bg-white">#{west.teamName}</a>
+				</h:column>	
+ 				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Victories"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{west.wins}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Derrotes"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{west.loses}" />
+				</h:column>	
+			</h:dataTable>
+			</div>
+			</div>
+		  </h:form>  		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <meta name="description" content="" />
+  <meta name="author" content="" />
+
+  <title>TFG</title>
+
+  <!-- Bootstrap core CSS -->
+  <h:outputStylesheet library="css" name="bootstrap.min.css" />
+  <!-- Custom styles for this template -->
+  <h:outputStylesheet library="css" name="simple-sidebar.css" />
+
+</h:head>
+
+<h:body>
+  <div class="d-flex" id="wrapper">
+
+    <!-- Sidebar -->
+    <div class="bg-white border-right" id="sidebar-wrapper">
+      <div class="sidebar-heading"><img src="/tfg/resources/img/logo.jpg" alt="Logo" class="rounded" height="150" width="200"/> </div>
+      <div class="list-group list-group-flush">
+      	<a href="/tfg/matchs/homeView.xhtml" class="list-group-item list-group-item-action bg-white">Inici</a>
+        <a href="/tfg/statistics/showAllStatisticsView.xhtml" class="list-group-item list-group-item-action bg-white">Tipus de dades</a>
+        <a href="/tfg/ratings/showAllRatingsView.xhtml" class="list-group-item list-group-item-action bg-white">Classificacions</a>
+        <a href="/tfg/imports/importsView.xhtml" class="list-group-item list-group-item-action bg-white">Importar Dades</a>
+      </div>
+    </div>
+    <!-- /#sidebar-wrapper -->
+
+    <!-- Page Content -->
+    <div id="page-content-wrapper">
+      <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom">
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          	<h1>Projeccions de partits NBA</h1>
+        </div>
+      </nav>
+
+      <div class="container-fluid">
+      	<ui:insert name="content">Content</ui:insert>
+      </div>
+    </div>
+    <!-- /#page-content-wrapper -->
+
+	
+  </div>
+  <!-- /#wrapper -->
+		<footer class="footer navbar-fixed-bottom bg-white border-top">
+			<div class="container-fluid text-center text-md-left">
+			    <div class="row">
+			    	<div class="col-md-3 mx-auto">
+			    	<p/>
+			    		<h6 class="text-uppercase font-weight-bold">UOC</h6>
+					        <hr class="deep-purple accent-2 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;"/>
+					        <p>
+					          Treball Final de Grau
+					        </p>
+					        <p>
+					          Desenvolupament Web
+					        </p>
+					        <p>
+					          mbachro
+					        </p>
+			        </div>
+			    </div>
+			</div>
+	</footer>
+</h:body>
+
+</html>

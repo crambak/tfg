@@ -1,0 +1,90 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="content">
+	  <h:form align="left" >
+	  <f:metadata>
+		   <f:viewParam name="idRating" value="#{ranklist.idRating}" required="true" />
+		</f:metadata>	
+	  <br />
+	  	<h:outputText value="Classificació: " style="white-space: pre;font-size:35px;"/><h:outputText value="#{ranklist.rating}" style="white-space: pre;font-size:40px; font-style:italic"/>
+	  	<br />
+		<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+			<div  class="btn-group mr-2" role="group" aria-label="First group">
+				<h:commandButton class="btn btn-success" value="Afegir rang" action="#{ranklist.addRank(ranklist.idRating)}"/>
+			</div>
+	 		<div class="btn-group mr-2" role="group" aria-label="Second group">
+				<h:commandButton class="btn btn-info" value="Calcular rangs" action="#{ranklist.calculateRank(ranklist.idRating)}"/>
+			</div>
+		</div>	
+		<br />
+		<h:dataTable class="table table-bordered" value="#{ranklist.ranksList()}" var="item" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Nom"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.name}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Descripció"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.description}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Mínim"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.min}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Màxim"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.max}" />
+				</h:column>	
+ 				<h:column>
+ 					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+<!-- 	 					<div  class="btn-group mr-2" role="group" aria-label="First group"> -->
+<!-- 	 						<h:commandButton class="btn btn-info" value="Veure" action="#{ranklist.showRank(item.id, item.idRating)}"/> -->
+<!-- 	 					</div> -->
+	 					<div class="btn-group mr-2" role="group" aria-label="Second group">
+	 						<h:commandButton class="btn btn-success" value="Actualitzar" action="#{ranklist.updateRank(item.id, item.idRating)}"/>
+	 					</div>
+	 					<div class="btn-group mr-2" role="group" aria-label="Third group">
+							<h:commandButton class="btn btn-danger" value="Eliminar" action="#{ranklist.deleteRank(item.id,ranklist.idRating)}"/>
+						</div>
+					</div>
+				</h:column> 
+			</h:dataTable>
+			<p/>
+			<div class="col-md-3">
+			<h:dataTable class="table table-bordered" value="#{ranklist.getListRankTeam()}" var="item" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Nom"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.name}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Rang"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.rank}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Mitjana"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.avg}" />
+				</h:column>
+			</h:dataTable>
+			</div>
+			<p/>
+			<a class="btn btn-outline-danger" href="/tfg/ratings/showAllRatingsView.xhtml">Tornar</a>
+		  </h:form>  		
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,85 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="content">
+	  <h:form align="left" >	
+	  
+	  	<br />
+		<div><a class="btn btn-success" href="/tfg/ratings/addRatingsView.xhtml">Afegir classificació</a></div>	
+		<br />
+		<h:dataTable class="table table-bordered" value="#{ratinglist.ratingsList()}" var="item" first="0" frame="hsides" rules="all"  >
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Nom"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.name}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Descripció"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.description}" />
+				</h:column>	
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Tipus de dada"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.statistics}" />
+				</h:column>	
+<!-- 				<h:column> -->
+<!-- 	  				<f:facet name="header"> -->
+<!-- 	  					<h:outputText value="Number of Days"/> -->
+<!-- 	  				</f:facet>  -->
+<!-- 	    			<h:outputText value="#{item.days}" /> -->
+<!-- 				</h:column>	 -->
+<!-- 				<h:column> -->
+<!-- 	  				<f:facet name="header"> -->
+<!-- 	  					<h:outputText value="Number of Matches"/> -->
+<!-- 	  				</f:facet>  -->
+<!-- 	    			<h:outputText value="#{item.numberMatchs}" /> -->
+<!-- 				</h:column>	 -->
+<!-- 				<h:column> -->
+<!-- 	  				<f:facet name="header"> -->
+<!-- 	  					<h:outputText value="Location"/> -->
+<!-- 	  				</f:facet>  -->
+<!-- 	    			<h:outputText value="#{item.location}" /> -->
+<!-- 				</h:column>	 -->
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Estat"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.active}" />
+				</h:column>
+				<h:column>
+	  				<f:facet name="header">
+	  					<h:outputText value="Tipus de càlcul"/>
+	  				</f:facet> 
+	    			<h:outputText value="#{item.calcul}" />
+				</h:column>
+ 				<h:column>
+ 					<div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+	 					<div  class="btn-group mr-2" role="group" aria-label="First group">
+	 						<h:commandButton class="btn btn-info" value="Veure" action="#{ratinglist.showRatings(item.id)}"/>
+	 					</div>
+	 					<div class="btn-group mr-2" role="group" aria-label="Second group">
+	 						<h:commandButton class="btn btn-success" value="Actualitzar" action="#{ratinglist.updateRatings(item.id)}"/>
+	 					</div>
+	 					<div class="btn-group mr-2" role="group" aria-label="Third group">
+							<h:commandButton class="btn btn-danger" value="#{item.buttonAct}" action="#{ratinglist.activeRatings(item.id, item.activeBol)}"/>
+						</div>
+	 					<div class="btn-group mr-2" role="group" aria-label="Fourth group">
+							<h:commandButton class="btn btn-secondary" value="#{item.buttonAut}" action="#{ratinglist.autoRatings(item.id, item.automatic)}"/>
+						</div>
+	 					<div class="btn-group mr-2" role="group" aria-label="Fifth group">
+							<h:commandButton class="btn btn-primary" value="Veure rangs" action="#{ratinglist.showRanks(item.id)}"/>
+						</div>
+					</div>
+				</h:column> 
+			</h:dataTable>
+<!-- 			<a class="btn btn-outline-danger" href="/tfg/matchs/homeView.xhtml">Return</a> -->
+		  </h:form>  		
+	</ui:define>
+</ui:composition>

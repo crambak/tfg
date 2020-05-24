@@ -1,0 +1,61 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+>
+	<f:metadata>
+	   <f:viewParam name="id" value="#{updaterank.id}" required="true" />
+	</f:metadata>
+	<f:metadata>
+	   <f:viewParam name="idrating" value="#{updaterank.idrating}" required="true" />
+	</f:metadata>
+	   
+	<ui:define name="content">
+		<h:form>
+		<br />
+		  <div class="form-group">
+		  
+		    <label for="name">Name</label>
+		    <h:inputText id="type" class="form-control" value="#{updaterank.name}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="name" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="description">Description</label>
+		    <h:inputText id="description" class="form-control" value="#{updaterank.description}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="description" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="min">Min</label>
+		    <h:inputText id="min" class="form-control" value="#{updaterank.min}">
+		    	<h:message for="min" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="max">Max</label>
+		    <h:inputText id="max" class="form-control" value="#{updaterank.max}">
+		    	<h:message for="max" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <br />
+		  <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+			<div  class="btn-group mr-2" role="group" aria-label="First group">
+		  		<h:commandButton class="btn btn-success" value="Update Statistics" action="#{updaterank.update(updaterank.id, updaterank.name, updaterank.description, updaterank.min, updaterank.max, updaterank.idrating)}"/>
+		  	</div>
+		  	<div  class="btn-group mr-2" role="group" aria-label="Second group">
+		  		<h:commandButton class="btn btn-outline-danger" value="Return" action="#{updaterank.showAllRank(updaterank.id)}"/>
+		  	</div>
+		  </div>
+		</h:form>
+		<div class="row mt-2">
+		<p></p><p></p>
+			<div class="col-sm-12">
+				<h:messages styleClass="errorMessage" />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

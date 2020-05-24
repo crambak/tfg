@@ -1,0 +1,40 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+>
+	<f:metadata>
+	   <f:viewParam name="id" value="#{updatestatistics.id}" required="true" />
+	</f:metadata>
+	   
+	<ui:define name="content">
+		<h:form>
+		<br />
+		  <div class="form-group">
+		  
+		    <label for="name">Tipus</label>
+		    <h:inputText id="type" class="form-control" value="#{updatestatistics.type}" disabled="true">
+		    	<f:validateLength minimum="1" maximum="20" />
+		    	<h:message for="name" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="description">Descripció</label>
+		    <h:inputText id="description" class="form-control" value="#{updatestatistics.description}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="location" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <br />
+		  <h:commandButton class="btn btn-success" value="Actualitza tipus de dada" action="#{updatestatistics.update(updatestatistics.id, updatestatistics.type, updatestatistics.description)}"/>
+		  <a class="btn btn-outline-danger" href="/tfg/statistics/showAllStatisticsView.xhtml">Tornar</a>
+		</h:form>
+		<div class="row mt-2">
+		<p></p><p></p>
+			<div class="col-sm-12">
+				<h:messages styleClass="errorMessage" />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

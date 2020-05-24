@@ -1,0 +1,68 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
+<ui:define name="content">
+	  <h:form align="left" >
+
+
+	  	<h:outputText value="Importar dades " style="white-space: pre;font-size:35px;"/>
+	  	<br />
+	  	<p />
+		<div><h:commandButton class="btn btn-info" value="Importar dades inicials" action="#{imports.initial()}"/></div>	
+		<br />
+		
+		<table class="table table-borderless">
+		  <thead>
+		    <tr>
+		      <th scope="col" width="135px" >Data inicial</th>
+		      <th scope="col" width="135px" >Data final</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td> 
+		      	<h:inputText id="initdate" class="form-control" value="#{imports.initdate}">
+		    		<f:validateLength minimum="1" maximum="10" />
+		    		<h:message for="initdate" errorClass="errorMessage" />
+		    	</h:inputText>
+		      </td>
+		      <td>
+		      	<h:inputText id="finishdate" class="form-control" value="#{imports.finishdate}">
+		    		<f:validateLength minimum="1" maximum="10" />
+		    		<h:message for="finishdate" errorClass="errorMessage" />
+		    	</h:inputText>
+		      </td>
+		      <td>
+					<h:commandButton class="btn btn-info" value="Importar partits" action="#{imports.importdates(imports.initdate, imports.finishdate)}"/>
+			  </td>
+		    </tr>
+		   </tbody>
+		</table>	
+		<table class="table table-borderless">
+		  <thead>
+		    <tr>
+		      <th scope="col" width="135px">Data</th>
+		      <th scope="col"></th>
+		    </tr>
+		  </thead>
+		  <tbody>
+		    <tr>
+		      <td> 
+		      	<h:inputText id="today" class="form-control" value="#{imports.today}">
+		    		<f:validateLength minimum="1" maximum="10" />
+		    		<h:message for="today" errorClass="errorMessage" />
+		    	</h:inputText>
+		      </td>
+		      <td>
+					<h:commandButton class="btn btn-info" value="Importar partits" action="#{imports.importdate(imports.today)}"/>
+			  </td>
+		    </tr>
+		   </tbody>
+		</table>		
+		  </h:form>  		
+	</ui:define>
+</ui:composition>

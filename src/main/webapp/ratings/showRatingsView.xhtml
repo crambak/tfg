@@ -1,0 +1,32 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+>
+<ui:define name="content">
+	  
+	<br/>
+		<div class="row">
+			<div class="col-md-3">
+				<div class="card">
+				  <div class="card-header">
+				   <h5 class="card-title"> #{ratings.ratings.name}</h5>
+				  </div>
+				  <div class="card-body">
+				    <p class="card-text"><strong>Descripció:</strong> #{ratings.ratings.description}</p>	
+				    <p class="card-text"><strong>Tipua de dada:</strong> #{ratings.statistics.description}</p>
+				    <p class="card-text"><strong>Número de dies:</strong> #{ratings.ratings.days}</p>	
+				    <p class="card-text"><strong>Número de partits:</strong> #{ratings.ratings.numberMatchs}</p>
+				    <p class="card-text"><strong>Ubicació:</strong> #{ratings.ratings.location}</p>		    
+				  </div>
+				</div>
+			</div>
+		</div>
+		<br />
+		<div>
+			<a class="btn btn-outline-danger" href="/tfg/ratings/showAllRatingsView.xhtml">Tornar</a>
+		</div>
+		<br/>		
+	</ui:define>
+</ui:composition>

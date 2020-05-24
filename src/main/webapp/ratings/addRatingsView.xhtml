@@ -1,0 +1,70 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+>
+	<ui:define name="content">
+		<h:form>
+		<br />
+		  <div class="form-group">
+		  
+		    <label for="name">Nom</label>
+		    <h:inputText id="type" class="form-control" value="#{addrating.name}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="name" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="description">Descripció</label>
+		    <h:inputText id="description" class="form-control" value="#{addrating.description}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="description" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="days">Número de dies</label>
+		    <h:inputText id="days" class="form-control" value="#{addrating.days}">
+		    	<h:message for="days" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="numberMatchs">Número de partits</label>
+		    <h:inputText id="numberMatchs" class="form-control" value="#{addrating.numberMatchs}">
+		    	<h:message for="numberMatchs" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		  	 <label for="location">Localització</label>
+		  	 <h:selectOneMenu id="location" class="form-control" value="#{addrating.location}">
+		    	 <f:selectItem itemValue="All" itemLabel="All" />
+			     <f:selectItem itemValue="Away" itemLabel="Away" />
+				 <f:selectItem itemValue="Home" itemLabel="Home" />
+		     </h:selectOneMenu>
+<!-- 			  <h:selectOneListbox value="#{addrating.location}"> -->
+<!-- 				     <f:selectItem itemValue="All" itemLabel="All" /> -->
+<!-- 				     <f:selectItem itemValue="Away" itemLabel="Away" /> -->
+<!-- 				     <f:selectItem itemValue="Home" itemLabel="Home" /> -->
+<!-- 			  </h:selectOneListbox> -->
+		  </div>
+		  <div class="form-group mb-2">
+		  	<label for="statistic">Tipus de dada</label>
+		  	<h:selectOneMenu id="statistic" class="form-control" value="#{addrating.statistic}">
+		    	<f:selectItems value="#{addrating.listStatistics}" />
+		    </h:selectOneMenu>
+<!-- 			  <h:selectOneListbox value="#{addrating.statistic}"> -->
+<!-- 			   	<f:selectItems value="#{addrating.listStatistics}" /> -->
+<!-- 			  </h:selectOneListbox> -->
+		  </div>
+		  <br />
+		  <h:commandButton class="btn btn-success" value="Crear classificació" action="#{addrating.add(addrating.name, addrating.description, addrating.days, addrating.numberMatchs, addrating.location, addrating.statistic)}"/>
+		  <a class="btn btn-outline-danger" href="/tfg/ratings/showAllRatingsView.xhtml">Tornar</a>
+		</h:form>
+		<div class="row mt-2">
+		<p></p><p></p>
+			<div class="col-sm-12">
+				<h:messages styleClass="errorMessage" />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>

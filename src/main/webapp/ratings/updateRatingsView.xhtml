@@ -1,0 +1,66 @@
+<ui:composition template="/common/BaseView.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+>
+	<f:metadata>
+	   <f:viewParam name="id" value="#{updaterating.id}" required="true" />
+	</f:metadata>
+	   
+	<ui:define name="content">
+		<h:form>
+		<br />
+		  <div class="form-group">
+		  
+		    <label for="name">Nom</label>
+		    <h:inputText id="type" class="form-control" value="#{updaterating.name}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="name" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="description">Descripció</label>
+		    <h:inputText id="description" class="form-control" value="#{updaterating.description}">
+		    	<f:validateLength minimum="1" maximum="45" />
+		    	<h:message for="description" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="days">Número de dies</label>
+		    <h:inputText id="days" class="form-control" value="#{updaterating.days}">
+		    	<h:message for="days" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		    <label for="numberMatchs">Número de partits</label>
+		    <h:inputText id="numberMatchs" class="form-control" value="#{updaterating.numberMatchs}">
+		    	<h:message for="numberMatchs" errorClass="errorMessage" />
+		    </h:inputText>
+		  </div>
+		  <div class="form-group mb-2">
+		  	 <label for="location">Ubicació</label>
+		  	 <h:selectOneMenu id="location" class="form-control" value="#{updaterating.location}">
+		    	 <f:selectItem itemValue="All" itemLabel="Tots" />
+			     <f:selectItem itemValue="Away" itemLabel="Fora" />
+				 <f:selectItem itemValue="Home" itemLabel="Casa" />
+		     </h:selectOneMenu>
+		  </div>
+		  <div class="form-group mb-2">
+		  	<label for="statistic">Tipus de dada</label>
+		  	<h:selectOneMenu id="statistic" class="form-control" value="#{updaterating.statistic}">
+		    	<f:selectItems value="#{updaterating.listStatistics}" />
+		    </h:selectOneMenu>
+		  </div>
+		  <br />
+		  <h:commandButton class="btn btn-success" value="Update Rating" action="#{updaterating.update(updaterating.id, updaterating.name, updaterating.description, updaterating.days, updaterating.numberMatchs, updaterating.location, updaterating.statistic)}"/>
+		  <a class="btn btn-outline-danger" href="/tfg/ratings/showAllRatingsView.xhtml">Tornar</a>
+		</h:form>
+		<div class="row mt-2">
+		<p></p><p></p>
+			<div class="col-sm-12">
+				<h:messages styleClass="errorMessage" />
+			</div>
+		</div>
+	</ui:define>
+</ui:composition>
