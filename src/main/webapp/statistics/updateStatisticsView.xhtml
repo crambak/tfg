@@ -23,11 +23,11 @@
 		    <label for="description">Descripció</label>
 		    <h:inputText id="description" class="form-control" value="#{updatestatistics.description}">
 		    	<f:validateLength minimum="1" maximum="45" />
-		    	<h:message for="location" errorClass="errorMessage" />
+		    	<h:message for="description" errorClass="errorMessage" />
 		    </h:inputText>
 		  </div>
 		  <br />
-		  <h:commandButton class="btn btn-success" value="Actualitza tipus de dada" action="#{updatestatistics.update(updatestatistics.id, updatestatistics.type, updatestatistics.description)}"/>
+		  <h:commandButton class="btn btn-success" value="Actualitza tipus de dada" action="#{updatestatistics.update(updatestatistics.id, updatestatistics.description)}"/>
 		  <a class="btn btn-outline-danger" href="/tfg/statistics/showAllStatisticsView.xhtml">Tornar</a>
 		</h:form>
 		<div class="row mt-2">
