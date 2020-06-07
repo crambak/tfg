@@ -61,7 +61,7 @@ public class UpdateStatistic {
 	public String update(String id, String description) throws Exception {
 		
 		StatisticsFacadeBean sf = new StatisticsFacadeBean();
-		sf.updateStatistics(Integer.parseInt(id), type);
+		sf.updateStatistics(Integer.parseInt(id), description);
 		
 		return "/statistics/showAllStatisticsView.xhtml?faces-redirect=true";
 	}
